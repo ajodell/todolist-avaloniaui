@@ -9,14 +9,33 @@
         Icon="/Assets/avalonia-logo.ico"
         Title="ToDoList">
 
-    <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainViewModel />
-    </Design.DataContext>
+        <Grid RowDefinitions="Auto, *, Auto" x:Name="Root">
+            <!-- App title up top -->
+            <TextBlock Grid.Row="0" Text="My To-Do List" HorizontalAlignment="Center"/>
 
-    <TextBox Text="{Binding Greeting}"
-             HorizontalAlignment="Center"
-             VerticalAlignment="Center" />
-
+            <!-- The row containing the to-do items -->
+            <ScrollViewer Grid.Row="1">
+                <ItemsControl ItemsSource="{Binding ToDoItems}">
+                    <!-- Template for each item in ToDoItems -->
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="vm:ToDoItemViewModel">
+                            <!-- Two-column grid with a checkbox and a  -->
+                            <Grid ColumnDefinitions="*, Auto">
+                                <CheckBox Grid.Column="0" Content="{Binding Content}" IsChecked="{Binding IsChecked}" Focusable="False" />
+                                <Button Grid.Column="1" Command="{Binding #Root.((vm:MainViewModel)DataContext).RemoveItemCommand}"
+                                        CommandParameter="{Binding .}">Delete</Button>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+            <TextBox Grid.Row="2" Text="{Binding NewItemContent}" PlaceholderText="Add a new item...">
+                <TextBox.InnerRightContent>
+                    <Button Command="{Binding AddItemCommand}">Add</Button>
+                </TextBox.InnerRightContent>
+                <TextBox.KeyBindings>
+                    <KeyBinding Command="{Binding AddItemCommand}" Gesture="Enter"/>
+                </TextBox.KeyBindings>
+            </TextBox>
+        </Grid>
 </Window>

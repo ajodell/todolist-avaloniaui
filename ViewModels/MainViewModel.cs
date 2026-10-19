@@ -21,7 +21,7 @@ public partial class MainViewModel : ViewModelBase
     private void AddItem()
     {
         // Add a new item to the list
-        ToDoItems.Add(new ToDoItemViewModel() {Content = NewItemContent});
+        ToDoItems.Add(new ToDoItemViewModel() {Content = NewItemContent, IsChecked = false});
         NewItemContent = null;
     }
 
