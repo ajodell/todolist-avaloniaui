@@ -1,0 +1,22 @@
+# .NET Core / Visual Studio build folders
+/[Bb]in/
+/[Oo]bj/
+/out/
+/build/
+
+# Visual Studio files
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Rider files
+.idea/
+
+# VS Code files
+.vscode/
+
+# OS specific
+.DS_Store
+Thumbs.db
