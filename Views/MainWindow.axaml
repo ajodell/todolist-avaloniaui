@@ -11,15 +11,15 @@
 
         <Grid RowDefinitions="Auto, *, Auto" x:Name="Root">
             <!-- App title up top -->
-            <TextBlock Grid.Row="0" Text="My To-Do List" HorizontalAlignment="Center"/>
+            <TextBlock Grid.Row="0" Classes="h1" Text="My To-Do List" HorizontalAlignment="Center"/>
 
             <!-- The row containing the to-do items -->
-            <ScrollViewer Grid.Row="1">
+            <ScrollViewer Grid.Row="1" Padding="10">
                 <ItemsControl ItemsSource="{Binding ToDoItems}">
                     <!-- Template for each item in ToDoItems -->
                     <ItemsControl.ItemTemplate>
                         <DataTemplate DataType="vm:ToDoItemViewModel">
-                            <!-- Two-column grid with a checkbox and a  -->
+                            <!-- Two-column grid with a checkbox and a button -->
                             <Grid ColumnDefinitions="*, Auto">
                                 <CheckBox Grid.Column="0" Content="{Binding Content}" IsChecked="{Binding IsChecked}" Focusable="False" />
                                 <Button Grid.Column="1" Command="{Binding #Root.((vm:MainViewModel)DataContext).RemoveItemCommand}"
