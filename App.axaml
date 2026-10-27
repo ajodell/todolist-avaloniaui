@@ -19,5 +19,13 @@
             <Setter Property="FontSize" Value="15" />
             <Setter Property="Margin" Value="5" />
         </Style>
+        <!-- Checkbox style -->
+        <Style Selector="CheckBox">
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+        </Style>
+        <Style Selector="CheckBox:pointerover /template/ Grid#RootGrid">
+            <Setter Property="Background" Value="{DynamicResource SystemAccentColorLight3}" />
+        </Style>
+
     </Application.Styles>
 </Application>
